@@ -17,8 +17,11 @@ class MoviesController < ApplicationController
       unless session[:sort].nil?
         params[:sort] = session[:sort]
       end
-    end      
-        
+    else
+      @movies = @movies.sort(params[:sort])
+      @sort = params[:sort]
+    end
+    
     unless params[:sort].nil?
       @movies = @movies.sort(params[:sort])
       @sort = params[:sort]
