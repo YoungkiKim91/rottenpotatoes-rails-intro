@@ -13,7 +13,7 @@ class MoviesController < ApplicationController
     @ratings_hash = params[:ratings] || session[:ratings] || Hash[@all_ratings.map{|rating| [rating,"1"]}]
     @movies = Movie.with_ratings(@ratings_hash.keys)
     
-    if params[:sort].nil?
+    if params[:sort] == nil
       unless session[:sort].nil?
         params[:sort] = session[:sort]
       end
@@ -22,7 +22,7 @@ class MoviesController < ApplicationController
       @sort = params[:sort]
     end
     
-    unless params[:sort].nil?
+    unless params[:sort] == nil
       @movies = @movies.sort(params[:sort])
       @sort = params[:sort]
     end
